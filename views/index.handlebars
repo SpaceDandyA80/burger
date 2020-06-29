@@ -1,0 +1,18 @@
+<h1>yo burgers</h1>
+
+<h3>get yo hot fresh boigers</h3>
+
+<ul>
+	{{#each burgers}}
+	<li>
+		<p>ID: {{this.id}}</p>
+		<p>Burger: {{this.burger}}</p>
+	</li>
+	{{/each}}
+</ul>
+
+<form action="/api/burgers" method="POST">
+	<textarea type="text" name="newBurger"></textarea>
+
+	<button type="submit">Submit</button>
+</form>
