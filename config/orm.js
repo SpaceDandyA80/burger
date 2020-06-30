@@ -16,8 +16,10 @@ var orm = {
       })
   },
   // creates a new bruger to database
-  insertOne: function (table, cols, vals, cb) {
+  insertOne: function (table, vals, cb) {
+
       var queryString = "insert into "+ table +" (burger_name) values "+ "('"+vals+"')";
+      console.log(queryString);
       connection.query(queryString, function(err,result){
           if (err) throw err;
           cb(result);
