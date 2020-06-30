@@ -7,6 +7,9 @@
 	<li>
 		<p>ID: {{this.id}}</p>
 		<p>Burger: {{this.burger_name}}</p>
+		<form action="/api/burgers/:id" method="DELETE">
+		<button data-id="{{id}}"> devour this burger</button>
+		</form>
 	</li>
 	{{/each}}
 </ul>

@@ -18,10 +18,14 @@ var burger = {
         cb(res);
     });
   }
-  //,
-  //delete: function(cb){
+  ,
+  delete: function(idToDelete, cb){
+    console.log("we're here")
+      orm.delete("burger", idToDelete, function(res){
+          cb(res);
+      })
 
-  //}
+  }
 };
 
 module.exports = burger;
