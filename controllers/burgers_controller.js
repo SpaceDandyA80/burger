@@ -1,7 +1,7 @@
-const express = require("express");
-const router = express.Router();
+var express = require("express");
+var router = express.Router();
 
-const burger = require("../models/burger.js");
+var burger = require("../models/burger.js");
 
 router.get("/", function(req,res){
     burger.all(function(data){
@@ -45,24 +45,30 @@ router.put("/api/burgers/:id", function(req,res){
     );
 });
 
-router.delete("/api/burgers/:id", function (req, res) {
 
-    console.log("condition", condition);
+
+ router.delete("/api/burgers/:id", function (req, res) {
+    console.log('burger delete route hit.')
     burger.delete(
-      {
-        id: req.params.id,
-      },
-      condition,
-      function (result) {
-        if (result.affectedRows == 0) {
-          // If no rows were changed, then the ID must not exist, so 404
-          return res.status(404).end();
-        } else {
-          res.status(200).end();
-        }
-      }
-    );
-  });
+        {
+          id: req.params.id,
+        },
+        console.log('Burger ID',req.params.id)
+    )
+    });
+    
+      
+    
+    //   function (result) {
+    //     if (result.affectedRows == 0) {
+    //       // If no rows were changed, then the ID must not exist, so 404
+    //       return res.status(404).end();
+    //     } else {
+    //       res.status(200).end();
+    //     }
+    //   }
+    // );
+ // });
 
   // Export routes for server.js to use.
 module.exports = router;

@@ -12,10 +12,10 @@ function objToSql(ob) {
   
     for (var key in ob) {
         console.log("I made it here");
-      arr.push(key + "=" + ob[key]);
-      console.log("KEY: " + key);
-      console.log("OB: "+ ob);
-      console.log("Array:" + arr);
+      arr.push(key + " = " + ob[key]);
+    //   console.log("KEY: " + key);
+    //   console.log("OB: "+ ob);
+    //   console.log("Array:" + arr);
 
     }
 
@@ -62,19 +62,18 @@ var orm = {
     });
   },
 
-  deleteById: function(table, idToDelete, cb){
+  deleteById: function(table, id, cb){
 
     var queryString = "delete from " + table;
 
-    queryString += " where id = ";
-    queryString += idToDelete;
+    queryString += " where ";
+    queryString += objToSql(id);
 //delete from burger where id = 26;
     console.log(queryString);
     connection.query(queryString, function(err, result) {
       if (err) {
         throw err;
       }
-
       cb(result);
     });
   }
