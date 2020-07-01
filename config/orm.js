@@ -14,8 +14,8 @@ function objToSql(ob) {
         console.log("I made it here");
       arr.push(key + "=" + ob[key]);
       console.log("KEY: " + key);
-      console.log(ob);
-      console.log(arr);
+      console.log("OB: "+ ob);
+      console.log("Array:" + arr);
 
     }
 
@@ -62,15 +62,21 @@ var orm = {
     });
   },
 
-  delete: function(table, idToDelete, cb){
+  deleteById: function(table, idToDelete, cb){
 
-    console.log("idToDelete")
-    let queryString = "delete from "+table+" where id = "+idToDelete+";";
-    connection.query(queryString, (err, result)=>{
-      if (err) throw err;
-      console.log(queryString)
+    var queryString = "delete from " + table;
+
+    queryString += " where id = ";
+    queryString += idToDelete;
+//delete from burger where id = 26;
+    console.log(queryString);
+    connection.query(queryString, function(err, result) {
+      if (err) {
+        throw err;
+      }
+
       cb(result);
-    })
+    });
   }
 };
 

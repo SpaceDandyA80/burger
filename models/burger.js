@@ -1,4 +1,4 @@
-const orm = require("../config/orm.js");
+var orm = require("../config/orm.js");
 
 var burger = {
   all: function (cb) {
@@ -21,7 +21,7 @@ var burger = {
   ,
   delete: function(idToDelete, cb){
     console.log("we're here")
-      orm.delete("burger", idToDelete, function(res){
+      orm.deleteById("burger", idToDelete, function(res){
           cb(res);
       })
 
