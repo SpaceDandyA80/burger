@@ -25,3 +25,7 @@ app.use(routes);
 app.listen(PORT, function () {
   console.log("Server listening on: http://localhost:" + PORT);
 });
+
+
+// git commit --allow-empty -m "empty commit"
+// git push heroku master

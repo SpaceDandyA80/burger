@@ -19,9 +19,9 @@ var burger = {
     });
   }
   ,
-  delete: function(idToDelete, cb){
+  delete: function(id, cb){
     console.log("we're here")
-      orm.deleteById("burger", idToDelete, function(res){
+      orm.deleteById("burger", id, function(res){
           cb(res);
       })
 
@@ -29,6 +29,18 @@ var burger = {
 };
 
 module.exports = burger;
+
+
+
+
+
+
+
+
+
+
+
+
 
 // router.put("/burgers/:id", function(req, res) {
 //     burger.update(req.params.id, function(result) {

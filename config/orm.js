@@ -7,41 +7,39 @@ const connection = require("../config/connection.js");
 // ["?", "?", "?"].toString() => "?,?,?";
 
 function objToSql(ob) {
-    // column1=value, column2=value2,...
-    var arr = [];
-  
-    for (var key in ob) {
-        console.log("I made it here");
-      arr.push(key + " = " + ob[key]);
+  // column1=value, column2=value2,...
+  var arr = [];
+
+  for (var key in ob) {
+    console.log("I made it here");
+    arr.push(key + " = " + ob[key]);
     //   console.log("KEY: " + key);
     //   console.log("OB: "+ ob);
     //   console.log("Array:" + arr);
-
-    }
-
-    console.log(arr.toString());
-    return arr.toString();
   }
 
+  console.log(arr.toString());
+  return arr.toString();
+}
 
 var orm = {
   // selects all info from sql database
   selectAll: function (tableInput, cb) {
-      var queryString = "select * from "+ tableInput + ";";
-      connection.query(queryString, function(err,result){
-          if (err) throw err;
-          cb(result);
-      })
+    var queryString = "select * from " + tableInput + ";";
+    connection.query(queryString, function (err, result) {
+      if (err) throw err;
+      cb(result);
+    });
   },
   // creates a new bruger to database
   insertOne: function (table, vals, cb) {
-
-      var queryString = "insert into "+ table +" (burger_name) values "+ "('"+vals+"')";
-      console.log(queryString);
-      connection.query(queryString, function(err,result){
-          if (err) throw err;
-          cb(result);
-      });
+    var queryString =
+      "insert into " + table + " (burger_name) values " + "('" + vals + "')";
+    console.log(queryString);
+    connection.query(queryString, function (err, result) {
+      if (err) throw err;
+      cb(result);
+    });
   },
   // updates aburger from database
   updateOne: function (table, objColVals, condition, cb) {
@@ -53,30 +51,30 @@ var orm = {
     queryString += condition;
 
     console.log(queryString);
-    connection.query(queryString, function(err, result) {
+    connection.query(queryString, function (err, result) {
       if (err) {
         throw err;
       }
-      
+
       cb(result);
     });
   },
 
-  deleteById: function(table, id, cb){
-
+  deleteById: function (table, id, cb) {
     var queryString = "delete from " + table;
 
-    queryString += " where ";
-    queryString += objToSql(id);
-//delete from burger where id = 26;
+    queryString += " where id = ";
+    queryString += id;
+    //delete from burger where id = 26;
     console.log(queryString);
-    connection.query(queryString, function(err, result) {
+    connection.query(queryString, function (err, result) {
       if (err) {
         throw err;
       }
+      console.log(result)
       cb(result);
     });
-  }
+  },
 };
 
 module.exports = orm;
